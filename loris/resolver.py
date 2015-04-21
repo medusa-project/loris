@@ -89,14 +89,6 @@ class SimpleFSResolver(_AbstractResolver):
 
         return (fp, format)
 
-class MedusaFSResolver(SimpleFSResolver)
-    
-    def resolve(self, ident)
-        (fp, format) = super.resolve(self, ident)
-        if format == 'jpeg':
-            format = 'jpg'
-        return (fp, format)
-
 class SimpleHTTPResolver(_AbstractResolver):
     '''
     Example resolver that one might use if image files were coming from
