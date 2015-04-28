@@ -9,7 +9,7 @@ from os.path import join, exists, isfile
 from os import makedirs
 from os.path import dirname
 from shutil import copy
-from urllib import unquote, quote_plus
+from urllib import unquote, quote_plus, unquote_plus
 
 import constants
 import hashlib
@@ -62,7 +62,7 @@ class SimpleFSResolver(_AbstractResolver):
         self.cache_root = self.config['src_img_root']
 
     def is_resolvable(self, ident):
-        ident = unquote(ident)
+        ident = unquote_plus(ident)
         fp = join(self.cache_root, ident)
         return exists(fp)
 
@@ -74,7 +74,7 @@ class SimpleFSResolver(_AbstractResolver):
         # For this dumb version a constant path is prepended to the identfier 
         # supplied to get the path It assumes this 'identifier' ends with a file 
         # extension from which the format is then derived.
-        ident = unquote(ident)
+        ident = unquote_plus(ident)
         fp = join(self.cache_root, ident)
         logger.debug('src image: %s' % (fp,))
 
