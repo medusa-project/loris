@@ -94,15 +94,12 @@ class ExtensionNormalizingFSResolver(SimpleFSResolver):
 
     def __init__(self, config):
         super(ExtensionNormalizingFSResolver, self).__init__(config)
+        self.extension_map = self.config['extension_map']
 
     def resolve(self, ident):
         fp, format = super(ExtensionNormalizingFSResolver, self).resolve(ident)
         format = format.lower()
-        #TODO - replace by configurable hash lookup
-        if format == 'jpeg':
-            format = 'jpg'
-        if format == 'tiff':
-            format = 'tif'
+        format = self.extension_map.get(format, format)
         return (fp, format)
 
 class SimpleHTTPResolver(_AbstractResolver):
