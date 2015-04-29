@@ -89,6 +89,16 @@ class SimpleFSResolver(_AbstractResolver):
 
         return (fp, format)
 
+class ExtensionNormalizingFSResolver(SimpleFSResolver):
+
+    def __init__(self, config):
+        super(ExtensionNormalizingFSResolver, self).__init__(config)
+
+    def resolve(self, ident):
+        fp, format = super(ExtensionNormalizingFSResolver, self).resolve(ident)
+        format = format.lower()
+        return (fp, format)
+
 class SimpleHTTPResolver(_AbstractResolver):
     '''
     Example resolver that one might use if image files were coming from
