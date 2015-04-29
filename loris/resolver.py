@@ -85,19 +85,22 @@ class SimpleFSResolver(_AbstractResolver):
             raise ResolverException(404, public_message)
 
         format = SimpleFSResolver._format_from_ident(ident)
+        #MEDUSA ADDITIONS
+        format = format.lower()
+
         logger.debug('src format %s' % (format,))
 
         return (fp, format)
 
-class ExtensionNormalizingFSResolver(SimpleFSResolver):
-
-    def __init__(self, config):
-        super(ExtensionNormalizingFSResolver, self).__init__(config)
-
-    def resolve(self, ident):
-        fp, format = super(ExtensionNormalizingFSResolver, self).resolve(ident)
-        format = format.lower()
-        return (fp, format)
+# class ExtensionNormalizingFSResolver(SimpleFSResolver):
+#
+#     def __init__(self, config):
+#         super(ExtensionNormalizingFSResolver, self).__init__(config)
+#
+#     def resolve(self, ident):
+#         fp, format = super(ExtensionNormalizingFSResolver, self).resolve(ident)
+#         format = format.lower()
+#         return (fp, format)
 
 class SimpleHTTPResolver(_AbstractResolver):
     '''
