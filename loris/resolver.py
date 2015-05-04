@@ -85,7 +85,6 @@ class SimpleFSResolver(_AbstractResolver):
             raise ResolverException(404, public_message)
 
         format = SimpleFSResolver._format_from_ident(ident)
-
         logger.debug('src format %s' % (format,))
 
         return (fp, format)
